@@ -120,7 +120,13 @@ RUN \
     mv /home/wekan/app_build/bundle /build && \
     \
     # Cleanup
-    echo "=============== \n"
+    apt-get remove --purge -y ${BUILD_DEPS} && \
+    apt-get autoremove -y && \
+    rm -R /var/lib/apt/lists/* && \
+    rm -R /home/wekan/.meteor && \
+    rm -R /home/wekan/app && \
+    rm -R /home/wekan/app_build && \
+    rm /home/wekan/install_meteor.sh
 
 ENV PORT=80
 EXPOSE $PORT
